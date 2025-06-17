@@ -1,0 +1,47 @@
+🛑 What is the problem?
+If you directly add user input into an SQL query, hackers can inject SQL commands to:
+
+Bypass logins
+
+Steal data
+
+Delete tables
+
+This is called SQL Injection.
+
+🚨 Example of vulnerable (bad) code:
+java
+Copy
+Edit
+String query = "SELECT * FROM products WHERE category = '" + input + "'";
+Let’s say the user gives this input:
+
+ini
+Copy
+Edit
+input = "electronics' OR '1'='1"
+Now the query becomes:
+
+sql
+Copy
+Edit
+SELECT * FROM products WHERE category = 'electronics' OR '1'='1'
+👎 This returns everything in the table. Hacker wins.
+
+✅ How to fix it: Use Prepared Statements (Parameterized Queries)
+Safe version of the code:
+java
+Copy
+Edit
+PreparedStatement statement = connection.prepareStatement("SELECT * FROM products WHERE category = ?");
+statement.setString(1, input);
+ResultSet resultSet = statement.executeQuery();
+Why this is safe:
+The ? is a placeholder.
+
+Java sends the user input separately to the database.
+
+So the input is treated as data, not as SQL code.
+
+SQL injection becomes impossible.
+

