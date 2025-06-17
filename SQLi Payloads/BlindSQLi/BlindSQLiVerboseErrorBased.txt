@@ -1,0 +1,49 @@
+🔍 What is this technique?
+When a website uses a database, sometimes it’s not secure and is set to show detailed error messages. These are called verbose errors.
+
+If the website is vulnerable to SQL Injection and these verbose errors are shown to the user, you can use them to:
+
+See the actual SQL query running behind the scenes.
+
+Steal sensitive data like usernames, passwords, or emails from the error messages themselves.
+
+🧠 Trick: Leak Data Using CAST(...) AS INT
+Now here’s the cool part.
+
+Let’s say the database holds passwords like:
+
+makefile
+Copy
+Edit
+username: admin
+password: Secret123
+And the data is stored as text (a string). You try to inject this SQL:
+
+sql
+Copy
+Edit
+CAST((SELECT password FROM users WHERE username='admin') AS INT)
+❌ What happens?
+Secret123 is a string.
+
+You’re forcing it to become a number (INT).
+
+That’s not possible, so the database throws an error like:
+
+pgsql
+Copy
+Edit
+ERROR: invalid input syntax for type integer: "Secret123"
+💥 Bingo!
+You just made the database leak the actual password in the error message.
+
+
+PAYLOAD WORKING GIVE NO ERROR
+Cookie: TrackingId=cUh5nMHsHRS95i4r'and 1=cast((select 1)as int)--
+
+this will casuse error because my query in backend is not complete because there is a validation in backend which accepts only certain numbers of length of char.
+'and 1=cast((select USERNAME from users)as int)--
+to fix this just remove text of tracking id and uper query will work fine.
+
+ANSWER PAYLOAD
+'and 1=cast((select password from users limit 1)as int)--

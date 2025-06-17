@@ -1,0 +1,28 @@
+💡 What is Boolean-Based Blind SQL Injection?
+It’s a type of SQL injection where:
+
+You don’t see any error messages.
+
+You don’t see the actual query result.
+
+But the application behavior changes based on whether your injected condition is TRUE or FALSE.
+
+So, you use this behavior to guess things like:
+
+Is the username "administrator"?
+
+What’s the first letter of the password?
+
+Etc.
+
+🔍 Real World Analogy
+Imagine you're blindfolded, but someone gives you a thumbs-up 👍 if your guess is right and thumbs-down 👎 if it's wrong. You can still figure things out by observing the reaction.
+
+
+WELCOME BACK ON PAGE LAB !!!!
+
+
+
+password is = mjx4f53g9t1hv8t7u8ve
+' and SUBSTRING((select password from users where username='administrator'),4,4)='9'--
+' and (select substring(password,1,1) from users where username='administrator')='a'--
