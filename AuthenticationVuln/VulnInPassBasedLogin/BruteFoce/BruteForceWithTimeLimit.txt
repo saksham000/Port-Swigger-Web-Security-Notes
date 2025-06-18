@@ -1,0 +1,16 @@
+This this attack there is a limit to 3 failed login attempts
+
+The website see the ip address and blocks for 30min
+
+Just change the value of this Header
+
+🧾 What is the X-Forwarded-For Header?
+The X-Forwarded-For header (often shortened to XFF) is an HTTP header used to tell the original IP address of the user who is making the request to a website through a proxy or load balancer.
+
+X-Forwarded-For: 1
+A random value will work.
+
+Also in this Lab there is diffrence in time of checking password
+valid username and incorrect password take long time
+invalid username takes very less time
+This can help to do attack.

@@ -1,0 +1,73 @@
+🔐 What Is Authentication?
+Authentication means checking who you are.
+
+Think of it like showing your ID before entering a building. The website wants to know if you are really you.
+
+🔑 3 Main Types of Authentication:
+Something You Know
+
+Example: Password, PIN, answer to a security question
+
+Called a "knowledge factor"
+
+Something You Have
+
+Example: Your phone, a security token (like an OTP app or YubiKey)
+
+Called a "possession factor"
+
+Something You Are or Do
+
+Example: Fingerprint, face scan, typing style
+
+Called an "inherence factor"
+
+Websites can use one, two, or all three for multi-factor authentication (MFA).
+
+🧾 Authentication vs Authorization (Very Important!)
+Authentication = Who are you?
+
+Example: You log in with your username and password.
+
+Authorization = What are you allowed to do?
+
+Example: After logging in, can you view your own profile? Or edit someone else’s?
+
+📌 Think of it like this:
+🔓 Authentication opens the door.
+🛑 Authorization tells you which rooms you can enter.
+
+⚠️ How Do Authentication Vulnerabilities Happen?
+Two common ways:
+
+Weak Defenses Against Brute-Force Attacks
+
+If a website lets someone try passwords over and over (without blocking or rate-limiting), attackers can guess passwords easily.
+
+Broken Logic / Poor Coding
+
+Example: The website lets you skip login if you visit a certain URL.
+
+This is called broken authentication — and it’s a big risk.
+
+💣 What’s the Risk?
+Small Issue? ❌ Nope. Authentication bugs are usually very serious because:
+Hackers can log in as other users.
+
+If they log in as admin, they can:
+
+Control the whole site
+
+Steal all the data
+
+Access the server or internal systems
+
+Even low-level user accounts can help hackers:
+
+Access hidden pages
+
+Collect private data
+
+Launch deeper attacks
+
+🔐 So, a small crack in login security can turn into a huge breach.

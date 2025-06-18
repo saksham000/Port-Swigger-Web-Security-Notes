@@ -1,0 +1,92 @@
+🔐 Password-Based Login Vulnerabilities
+When websites use usernames + passwords for login, they’re trusting that only the real user knows the correct password.
+
+But if an attacker guesses or steals those details, they can log in as the user. That’s a major risk.
+
+🚨 Common Attack: Brute-Force
+A brute-force attack is when a hacker tries tons of username-password combinations until one works.
+
+🔧 They use automated tools with big wordlists like:
+
+makefile
+Copy
+Edit
+usernames: admin, john, alice123
+passwords: 123456, password, Welcome123!
+They don’t type these manually — tools can try hundreds of logins per second.
+
+💡 Smarter Brute-Force: Not Just Random Guessing
+Hackers don’t just try random stuff. They use patterns:
+
+Companies often use firstname.lastname@company.com
+
+Admin accounts are often named admin, administrator, or it_support
+
+Users choose predictable passwords like Mypassword1!
+
+📌 So brute-force becomes faster and more accurate when attackers use logic and patterns.
+
+🎯 Brute-Forcing Usernames
+Usernames are often easy to guess because:
+
+Many websites use email as username
+
+Admin usernames are common and reused
+
+Sometimes usernames are exposed on public pages
+
+🔍 Example:
+A company website shows user profiles like:
+https://site.com/users/john.doe
+
+Even if the profile is hidden, the username is likely john.doe
+
+🔓 Brute-Forcing Passwords
+Even if strong passwords are required, users often:
+
+Use easy variations of common passwords:
+
+Mypassword1!, Myp@ssw0rd, Password2024!
+
+Slightly change passwords over time:
+
+Mypassword1! → Mypassword2! → Mypassword3!
+
+🧠 Hackers know this. So they design their tools to try common human patterns, not just random gibberish.
+
+🎭 Username Enumeration (Silent Clue Leaks)
+Username enumeration means a hacker can tell whether a username is real — just by how the website reacts.
+
+🧪 Examples:
+Status Codes:
+
+Invalid user: 401 Unauthorized
+
+Valid user, wrong password: 403 Forbidden
+
+🔥 Clue! The attacker now knows the username is valid.
+
+Error Messages:
+
+"User does not exist" vs. "Incorrect password"
+
+🔥 Even a small difference helps the attacker.
+
+Response Time Differences:
+
+Valid username: Site checks password → takes longer
+
+Invalid username: Fails immediately → quicker
+
+Hackers use tools to measure this timing!
+
+✅ What Should Websites Do?
+Use the same error message for all login failures.
+e.g. "Invalid username or password."
+
+Make sure status codes don’t give hints.
+
+Use rate-limiting and lockouts after multiple failed attempts.
+
+Implement 2FA (Two-Factor Authentication) for extra safety.
+

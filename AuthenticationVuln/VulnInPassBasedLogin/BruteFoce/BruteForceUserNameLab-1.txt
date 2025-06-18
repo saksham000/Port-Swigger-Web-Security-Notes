@@ -1,0 +1,8 @@
+use the given lists in intruder
+
+do simple sniper attack and see the response length
+
+there is diffrence in one response
+
+The username is app1
+The Password is 7777777
