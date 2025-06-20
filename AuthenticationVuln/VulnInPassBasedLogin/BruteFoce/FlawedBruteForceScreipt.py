@@ -4,7 +4,7 @@ for i in range(150):
     if i % 3:
         print("carlos")
     else:
-        print("weiner")
+        print("wiener")
 
 print("########################## THE FOLLOWING ARE THE PASSWORDS #############")
 with open('LabPasswords.txt','r') as f:

