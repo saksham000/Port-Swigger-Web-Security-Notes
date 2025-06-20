@@ -14,3 +14,12 @@ Also in this Lab there is diffrence in time of checking password
 valid username and incorrect password take long time
 invalid username takes very less time
 This can help to do attack.
+
+Answer
+
+To solve this lab add very long password and chnage the usernames one by one.
+This is beacuse the right username will take more time to validate the password
+Check the response time of attack the highest one is the more to correct username.
+Also dont forget to change the head which gives the ip to server.
+And Boom You Got the Username And That Is = athena
+And Password is = nicole
