@@ -1,0 +1,67 @@
+🔐 What Is Multi-Factor Authentication?
+MFA means a user must prove their identity in more than one way, like:
+
+Something you know → Password
+
+Something you have → Mobile phone with code
+
+(Sometimes) Something you are → Fingerprint, face scan, etc.
+
+Example of 2FA:
+Step 1: You enter your password
+
+Step 2: You enter a 6-digit code from your mobile app (like Google Authenticator)
+
+✅ This is much safer than just a password.
+
+❌ But MFA Can Still Be Vulnerable
+Just like passwords, MFA can be hacked — if it’s badly implemented.
+
+⚠️ Weakness #1: Not True 2FA (Fake MFA)
+Sometimes a site claims to use 2FA, but it’s really just verifying the same factor twice.
+
+🧾 Example: Email-based 2FA
+
+Step 1: Enter password
+
+Step 2: Enter code sent to your email
+
+But your email account also uses just a password — so both steps rely on the same knowledge (your password).
+
+📌 So if someone steals your password, they can also log into your email — and get the code.
+
+❗ True 2FA = Two different factors (e.g., password + device)
+
+⚠️ Weakness #2: SMS Codes Are Risky
+Some websites send codes via SMS text messages.
+
+That’s "something you have" — your phone. But:
+
+SMS can be intercepted
+
+Hackers can use SIM swapping to take over your number
+
+They call the phone company, pretend to be you, and transfer your number to their SIM card
+
+➡️ Now they receive the 2FA codes meant for you 😬
+
+⚠️ Weakness #3: Bad Implementation = Total Bypass
+Sometimes 2FA is only partially enforced.
+
+🧪 Example Attack:
+
+Website has:
+
+Login page → asks for username & password
+
+Then redirects to 2FA page for code
+
+But what if the system already considers you logged in after step 1?
+
+🧨 A hacker can try skipping the 2FA step and directly open a protected page:
+
+https://example.com/account
+If that page loads without checking 2FA, the second step is useless!
+
+The LAB Process
+

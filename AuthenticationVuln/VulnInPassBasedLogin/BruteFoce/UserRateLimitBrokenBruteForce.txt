@@ -1,0 +1,63 @@
+🧯 What is User Rate Limiting?
+This is another defense websites use to stop brute-force attacks.
+
+Instead of locking accounts, it blocks the attacker’s IP address if they send too many login attempts too fast.
+
+🧰 How It Works:
+If you send 20 login attempts in a few seconds, the server might:
+
+⏳ Automatically block your IP for a few minutes/hours
+
+🧍‍♂️ Require you to solve a CAPTCHA
+
+🛠️ Make an admin unblock you manually
+
+🆚 Compared to Account Locking:
+✅ It's safer in some ways:
+
+Doesn't lock users out of their own accounts
+
+Less vulnerable to username enumeration (leaking whether a username is valid)
+
+Helps avoid denial-of-service (DoS) situations where real users can’t log in
+
+❌ But It's Not Foolproof — Here's Why:
+⚙️ 1. Attackers Can Fake Their IP Address
+Many attackers use proxy networks, botnets, or VPNs to change IPs constantly
+
+So when one IP is blocked, they just switch to another and keep attacking
+
+Example:
+vbnet
+Copy
+Edit
+Try 5 logins from IP #1 ➜ blocked
+Switch to IP #2 ➜ try again
+...repeat with 100s of IPs
+➡️ IP blocking is defeated.
+
+⚙️ 2. Guessing Multiple Passwords in a Single Request
+Some attackers can bypass rate limits by trying many passwords in one request.
+
+Example:
+Instead of sending:
+
+pgsql
+Copy
+Edit
+POST /login (with one password)
+They send:
+
+pgsql
+Copy
+Edit
+POST /multi-login (with 10 password guesses at once)
+If the site’s rate limit only counts number of requests, not passwords per request, this trick works.
+
+
+To Solve this lab
+just pass all the passowrds in an array at once
+use the python script present in this folder
+after generating all passwords in propar format use them all to login
+and you will get cookie of authenticated account put that in inspect element>application>cookie and click on my account
+and Boom ! Solved the Lab !

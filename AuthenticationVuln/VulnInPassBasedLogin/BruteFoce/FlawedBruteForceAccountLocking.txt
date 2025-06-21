@@ -1,0 +1,15 @@
+In this lab we can enumrate throught usernames without any problem but
+the goal is to find the valid username first soo first
+
+in intrduer set usernames for 1 and password is null payload make it 5 times concat this null with a string
+use custer bomb and got the username = guest
+
+THE MAIN LOGIC VULN IS HERE IS
+In backend if i try right username and wrong password too many times
+my account got locked for 1 min but during that lock if i enter right password
+in response it does not show any error like inavlid username or password
+
+and Boom check the password which does not show any error that it.
+we can see diffrence in response recived.
+
+the password is = pass
