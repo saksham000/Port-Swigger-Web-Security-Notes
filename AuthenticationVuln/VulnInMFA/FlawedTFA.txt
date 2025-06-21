@@ -1,0 +1,54 @@
+🧠 Flawed Two-Factor Verification Logic — What’s the Problem?
+Some websites don’t properly link the first login step with the second step (2FA).
+
+📌 The Flaw:
+They rely only on a cookie like:
+
+makefile
+Copy
+Edit
+Cookie: account=username
+to keep track of who is doing the second step.
+
+But if that cookie isn't protected, an attacker can change it and pretend to be someone else during the 2FA step.
+
+🧪 Example: How This Works
+🔐 Step 1 — Attacker logs into their own account:
+makefile
+Copy
+Edit
+POST /login-steps/first
+username=attacker
+password=attackerpass
+✅ Server responds:
+
+javascript
+Copy
+Edit
+Set-Cookie: account=attacker
+🧨 Step 2 — Attacker changes the cookie to someone else's username:
+Now, when submitting the 2FA code:
+
+sql
+Copy
+Edit
+POST /login-steps/second
+Cookie: account=victim-user
+verification-code=123456
+If the site doesn’t validate that the same user did both steps, the attacker might log in as victim-user.
+
+Especially dangerous if:
+
+The site uses short numeric codes (like 123456)
+
+There's no rate limiting on the 2FA step
+
+➡️ The attacker could brute-force the code and never need the victim's password!
+
+POC
+
+First enter the right usernmae and password
+then change username to carlos so that otp will
+send to carlos
+then go to next request in which we have to enter otp
+now bruteforce the otp to get carlos otp

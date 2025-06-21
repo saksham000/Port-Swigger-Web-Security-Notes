@@ -65,3 +65,6 @@ If that page loads without checking 2FA, the second step is useless!
 
 The LAB Process
 
+Just login to your account and copy ur url
+then login to victum and paste that url
+just change name in url

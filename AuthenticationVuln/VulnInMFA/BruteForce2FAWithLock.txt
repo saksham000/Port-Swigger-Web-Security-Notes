@@ -1,0 +1,7 @@
+In this lab we need to use macro
+beacuse we need to do this
+first get the login page request
+then enter the login detials and use that request
+then the 2fa code page comes
+then set the macro according to this
+Video url https://youtu.be/ZvU1M-OuXl0
