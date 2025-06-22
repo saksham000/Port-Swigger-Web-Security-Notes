@@ -1,0 +1,87 @@
+🔓 Authentication Isn’t Just the Login Page
+Most websites focus on securing the login form, but attackers also target other features like:
+
+🔑 Password reset
+
+🛠️ Account recovery
+
+🧾 "Remember me" (keep me logged in)
+
+These parts are often overlooked — but if they’re poorly implemented, attackers can use them to bypass login security.
+
+🧠 Case 1: “Remember Me” = Big Risk if Not Done Right
+Websites often offer:
+
+✅ [x] Keep me logged in
+
+This stores a "remember me" token in your browser as a cookie, so you stay logged in next time.
+
+🔥 What Could Go Wrong?
+If the token is predictable, an attacker can guess it and log in as the victim — without needing a password.
+
+🔓 Bad Implementation Example:
+Imagine the cookie looks like:
+
+ini
+Copy
+Edit
+remember=Base64(username:timestamp)
+Or worse:
+
+ini
+Copy
+Edit
+remember=Base64(username:password)
+If an attacker:
+
+Creates their own account
+
+Logs in and gets their cookie
+
+Decodes it and sees: john:1690000000
+
+They might guess that the format is:
+
+ini
+Copy
+Edit
+remember = Base64(username + ":" + timestamp)
+➡️ They can now try to generate tokens for other users, brute-force them, and gain access.
+
+🔐 Even Encrypted Cookies Can Be Weak
+Developers might try to "encrypt" the cookie to hide its values — but:
+
+🔁 Base64 is NOT encryption, just encoding — anyone can decode it
+
+🔐 Even real encryption (like SHA-1, SHA-256) isn’t safe if:
+
+No random salt is added
+
+The hashing algorithm is known
+
+The attacker can just hash a wordlist until they get a match
+
+🧪 Real-World Attack:
+Attacker creates their account, sees the hash for: attacker:1234
+
+They hash combinations like victim:1234, victim:1235, etc.
+
+Eventually, they find a cookie that lets them log in as victim
+
+
+Lab Process
+
+Stay logged in cookie is Base64 Encoded
+The Passwoed is MD5 Hashed use crackstation to check
+
+now encode all passwords to MD5
+then encode the string to Base64
+and bruteforce
+Base64(username:passwordMD5)
+
+to do all this automatically
+in intruder in payload processing tab
+do this 
+add hash of MD5
+add prefix carlos:
+add encodeing as Base64
