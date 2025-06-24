@@ -1,0 +1,92 @@
+🔐 Why Password Reset Is Risky
+When users forget their password, websites must offer a way to reset it without logging in — but this means the site has to trust that the person requesting the reset is really the account owner.
+
+If password reset isn’t done securely, anyone could:
+
+Reset another user’s password
+
+Gain full access to their account
+🔓 ➜ It becomes just as dangerous as a weak login form.
+
+⚠️ 1. Sending Passwords by Email (BAD 🔥)
+Some websites:
+
+Generate a new password and email it to the user
+
+Why This Is Dangerous:
+Email is not secure (can be intercepted)
+
+Inboxes are often synced across devices (less control)
+
+If the email is not deleted, the attacker might find it later
+
+If the user doesn’t immediately change the new password, it becomes a long-term risk
+
+✅ Modern websites should never email passwords — only reset links.
+
+⚠️ 2. Reset Links with Predictable Parameters
+Bad implementation:
+
+pgsql
+Copy
+Edit
+http://vulnerable-website.com/reset-password?user=alice
+If the attacker knows or guesses the username (alice, bob, etc.), they can just change the URL and reset someone else’s password.
+
+❌ This kind of reset link can be easily manipulated.
+
+✅ 3. Reset Links with Secure Tokens
+Better implementation:
+
+perl
+Copy
+Edit
+http://vulnerable-website.com/reset-password?token=ab328f9de90234d9234...
+The token is a random, long, hard-to-guess value
+
+Stored on the backend, linked to the correct username
+
+Expires after a short time (e.g., 10–15 mins)
+
+Can only be used once
+
+Example Flow:
+User clicks "Forgot Password"
+
+Server generates a unique token tied to their account
+
+Email is sent:
+reset-password?token=XYZ...
+
+User clicks it and sets a new password
+
+Token is immediately deleted
+
+✅ This is the correct approach.
+
+❌ BUT... Even This Can Be Flawed
+Bad Practice:
+The reset form accepts the new password, but doesn’t verify the token again when you submit it.
+
+So an attacker could:
+
+Request a password reset for themselves
+
+Get the form:
+
+pgsql
+Copy
+Edit
+/reset-password?token=XYZ
+Remove the token (manipulate the form request)
+
+Change the username parameter in the request to victim
+
+Set a new password for victim
+
+🔓 Now they’ve stolen someone’s account — without even seeing their email!
+
+
+LAB PROCESS
+
+It is a simple lab in forget password email in the link just change the username in the request and it and BOOM ! Lab is solved as carlos password is changed now.

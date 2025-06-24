@@ -1,0 +1,7 @@
+In this lab when we change the password there are two things happens
+
+1-> if the current pass is incorrect and both new pass are correct it logs out the account.(Current Pass incorrect but other two match directly logout and wait 1min)
+
+2-> if the current pass is incorrect and both new pass do not match it says current pass is incorrect and DO NOT logs out the account.(Current pass is incorrect and both pass do not match it says error current pass is incorrect do no logs out. use this logic flaw)
+
+so we can use this to brute force and when the current pass is correct it will say that new pass does not match and BOOM we got the current pass of carlos.
