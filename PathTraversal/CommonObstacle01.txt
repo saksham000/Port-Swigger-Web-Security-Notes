@@ -1,0 +1,47 @@
+🚧 Common Obstacles in Path Traversal Attacks
+Sometimes, websites try to block these kinds of attacks by putting up some basic defenses.
+
+🛡️ For example:
+The site might block inputs like ../ (which means "go up one folder").
+
+But... attackers can often bypass these protections using smart tricks.
+
+🧠 Trick 1: Using Absolute Paths
+Even if the site blocks ../, what if you don’t need to go up?
+
+🔓 Example:
+
+If the attacker just enters:
+
+plaintext
+Copy
+Edit
+filename=/etc/passwd
+This is called an absolute path, which means it starts from the root of the file system (from the / folder in Linux).
+
+So instead of:
+
+swift
+Copy
+Edit
+/var/www/images/../../../etc/passwd
+It directly tries to open:
+
+bash
+Copy
+Edit
+/etc/passwd
+If the web app doesn’t check for absolute paths, this trick might work—even without using ../.
+
+🔐 Summary:
+Even when a website tries to stop path traversal by removing ../, attackers can:
+
+Try using absolute paths instead.
+
+Use other tricks (we’ll cover more later) to sneak around these defenses.
+
+
+
+LAB PROCESS
+
+Just use absolute path.

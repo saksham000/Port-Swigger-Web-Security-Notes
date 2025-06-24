@@ -1,0 +1,7 @@
+Basically in this lab insted of normal way what server filter do is
+
+it looks for ../ in user input and removes it but do not do this recursively.
+
+so do everything 2 times so that it removes first and we left with our orignal payload like this
+../../../etc/passwd insted of this do this
+....//....//....//etc/passwd so it removes first ../ and left the orignal payload at the end.

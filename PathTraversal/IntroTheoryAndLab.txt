@@ -1,0 +1,78 @@
+🔐 What is Path Traversal?
+Definition (Simple):
+Path traversal (also called directory traversal) is a type of hacking trick where an attacker tries to access files they shouldn't be allowed to see on a web server.
+
+📂 Imagine This Example:
+You're on a shopping website, and it shows product images like this:
+
+html
+Copy
+Edit
+<img src="/loadImage?filename=218.png">
+When you see a shoe on the website, it loads the image from a folder on the server:
+
+📁 /var/www/images/218.png
+
+Here’s what’s happening behind the scenes:
+
+The server takes whatever filename you give it and adds it to a folder path.
+
+Example: if you say filename=218.png, it loads /var/www/images/218.png
+
+⚠️ Where It Goes Wrong (Path Traversal Attack)
+If the server doesn't check the filename properly, a hacker can abuse it.
+
+💀 Example of Attack:
+
+plaintext
+Copy
+Edit
+https://insecure-website.com/loadImage?filename=../../../etc/passwd
+What does this mean?
+
+.. means “go up one folder”
+
+../../../ means “go up 3 folders”
+
+So instead of reading from /var/www/images/218.png, it goes:
+
+swift
+Copy
+Edit
+/var/www/images/ → (..)
+   → /var/www/ → (..)
+      → /var/ → (..)
+         → /etc/passwd
+And now the attacker sees the file /etc/passwd, which is a sensitive file on Unix/Linux servers (it lists system users).
+
+🪟 Windows Example
+Windows uses backslashes \ instead of slashes /.
+
+So a hacker might use:
+
+Copy
+Edit
+..\..\..\windows\win.ini
+This also steps up folders and tries to read something like:
+
+makefile
+Copy
+Edit
+C:\Windows\win.ini
+🛡️ What Can Go Wrong?
+If successful, the attacker might:
+
+See passwords
+
+Read source code
+
+Find secret files
+
+Or even write files to the server and take over it!
+
+
+Lab Process
+
+Simplely open a image to new tab and
+in url in filename= add this ../../../etc/passwd
+and BOOM ! Solved.

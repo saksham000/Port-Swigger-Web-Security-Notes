@@ -1,0 +1,1 @@
+In this lab just url encode this ../../../etc/passwd and double encode this and BOOM solved the lab.

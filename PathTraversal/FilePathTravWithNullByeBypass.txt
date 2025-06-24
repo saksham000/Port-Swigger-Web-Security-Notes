@@ -1,0 +1,3 @@
+In this lab the server checks the returned file should have extension of .png
+
+To solve this lab just use %00.png and the end of normal payload. %00.png means it represents null bye character so use to bypass he filter.

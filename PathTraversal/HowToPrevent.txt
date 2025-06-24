@@ -1,0 +1,64 @@
+🛡️ How to Prevent Path Traversal Attacks
+✅ 1. Best Option: Don't use user input in file paths at all
+Simplest and safest rule:
+
+🚫 “Don’t let users choose file paths directly!”
+
+Instead of letting users send something like:
+
+
+/loadImage?filename=anything.png
+You could use a safe lookup system, like:
+
+
+/loadImage?id=123
+Then your code maps id=123 to a safe filename like 218.png, from a database or list.
+
+This way, users never control the filename.
+
+🛡️ 2. If You Must Use User Input
+Use two layers of protection:
+
+🔒 Layer 1: Validate the Input
+Check what the user is sending.
+
+✅ Best: Use a whitelist — only allow exact, approved filenames like:
+
+
+["cat.png", "dog.png", "car.png"]
+If you can’t do that, then only allow safe characters. Example:
+
+/^[a-zA-Z0-9_\-\.]+$/   ← only letters, numbers, dots, dashes
+This blocks bad characters like /, \, %, .., etc.
+
+🔒 Layer 2: Canonicalize the Path and Check It
+Even if the input looks okay, a hacker might sneak in ../ in creative ways.
+
+So after validating input, you need to check where the path really ends up.
+
+This is done using something called canonicalization, which means:
+
+“Give me the real, absolute path — after removing all ../ and shortcuts.”
+
+✅ Java Code Example (Explained)
+
+File file = new File(BASE_DIRECTORY, userInput);
+if (file.getCanonicalPath().startsWith(BASE_DIRECTORY)) {
+    // process file
+}
+Let’s say:
+
+BASE_DIRECTORY = "/var/www/images"
+
+userInput = "../../../etc/passwd"
+
+Then:
+
+
+file.getCanonicalPath() → "/etc/passwd"
+Now the check:
+
+
+"/etc/passwd".startsWith("/var/www/images") → false ❌
+So the request is blocked. ✅
+
