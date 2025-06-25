@@ -1,0 +1,62 @@
+🔒 What is OS Command Injection?
+OS Command Injection (or Shell Injection) is a type of vulnerability where an attacker can make a web application run system-level commands (like on Linux or Windows), which should not be allowed.
+
+Think of it like this:
+
+You ask a website: "Check if item 381 is in store 29."
+But instead of just checking, the website also runs any extra command you secretly add in the request.
+So you end up making the server run your own command too — like printing something, or worse — deleting files or stealing data.
+
+🧪 Example: Basic Command Injection
+The application uses a command like this in the backend:
+
+Copy
+Edit
+stockreport.pl 381 29
+It checks the stock of product ID 381 in store ID 29.
+
+But it doesn’t validate or sanitize the input properly.
+
+So, an attacker can craft this URL:
+
+bash
+Copy
+Edit
+https://insecure-website.com/stockStatus?productID=& echo hello & &storeID=29
+This turns into a command on the server:
+
+bash
+Copy
+Edit
+stockreport.pl & echo hello & 29
+Let’s break it down:
+
+stockreport.pl runs without any productID – causes an error like:
+
+javascript
+Copy
+Edit
+Error - productID was not provided
+echo hello – this is the attacker's injected command, which gets executed and shows:
+
+nginx
+Copy
+Edit
+hello
+29 is treated like a command by the system – since it's not valid, it causes another error:
+
+bash
+Copy
+Edit
+29: command not found
+⚠️ Why use &?
+The & character is a shell command separator.
+
+It lets you run multiple commands in sequence.
+
+So putting & echo hello & lets the attacker insert their command in the middle, and still let the app try to continue after.
+
+LAB PROCESS
+
+in this lab productId=1&storeId=1 is vlun to command Injection
+so in this lab just add this & whoami & and encode this and add this in productID=1& echo saksham& # do encode and # is used to comment out rest of the command. or other way we can use storeID=1|whoami it concats the command result to the response.

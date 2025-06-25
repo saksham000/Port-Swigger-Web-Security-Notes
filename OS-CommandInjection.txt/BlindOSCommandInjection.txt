@@ -1,0 +1,61 @@
+🕶️ What is Blind OS Command Injection?
+Blind OS Command Injection is when your command does get executed on the server, but…
+
+❌ You don’t see the result of that command in the website's response.
+
+It’s like texting someone a question and they do what you asked, but never reply back — so you don't know for sure what happened.
+
+🧪 Example Scenario
+Let’s say there's a feedback form on a website:
+
+You type your email and a message like:
+
+vbnet
+Copy
+Edit
+Email: peter@normal-user.net  
+Message: This site is great!
+The backend uses a Linux command to send this feedback via email:
+
+nginx
+Copy
+Edit
+mail -s "This site is great" -aFrom:peter@normal-user.net feedback@vulnerable-website.com
+You don't see the result of the mail command — so you can’t use something like echo hello to test for injection (because the echoed "hello" won't appear in the browser).
+
+⏱️ How to Detect Blind Command Injection?
+Even if you can’t see the output, you can still detect if your command is running — by checking if the server takes longer to respond.
+
+✅ Trick: Use Time Delays
+Inject this in the email field:
+
+css
+Copy
+Edit
+peter@normal-user.net & ping -c 10 127.0.0.1 &
+This full command becomes:
+
+nginx
+Copy
+Edit
+mail -s "This site is great" -aFrom:peter@normal-user.net & ping -c 10 127.0.0.1 & feedback@vulnerable-website.com
+Here's what happens:
+
+mail starts
+
+ping -c 10 127.0.0.1 pings itself (localhost) 10 times = ~10 seconds delay
+
+Server waits for ping to finish before responding
+
+✅ If you notice the feedback form takes way longer than usual (like 10+ seconds), it’s a strong clue that the ping command was executed — which proves a blind OS command injection exists.
+
+LAB PROCESS
+
+use this command to exploit the vulnerability
+csrf=T3EcKa16c9tPL9jnnywDEBWmVWyRnmxy&name=hi&email=sax%40gmail.com& ping -c 10 127.0.0.1 & &subject=xxx&message=hello
+
+ONLY EMAIL FIELD IS vulnerabile.
+
+add this to gmail section & ping -c 10 127.0.0.1 & and encode this and send it and BOOM ! solved the lab.
+
+instead of this we can also use  & sleep 10# and url encode this and this also works.

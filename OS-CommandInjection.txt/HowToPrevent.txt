@@ -1,0 +1,20 @@
+🛡️ How to Prevent OS Command Injection
+The best solution is:
+
+❌ Don’t use system commands at all with user input.
+
+Instead, use safe platform APIs.
+
+✅ If you must use system commands:
+Validate input strictly:
+
+Allow only known safe values (whitelist)
+
+Example: Only accept storeID=101, 102, 103
+
+Allow only numbers if numeric input is expected
+
+Only allow letters and numbers, no special characters
+
+🚫 Never do this:
+Don’t just try to "sanitize" input by escaping characters (\, quotes, etc.) — it's too easy to mess up and attackers can bypass it.
