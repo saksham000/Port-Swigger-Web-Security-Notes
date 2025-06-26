@@ -1,0 +1,2 @@
+In this lab first purchase any other item of low rate.
+After that plcae the order and see the confirmed order request after successfully placeing the order. now copy that GET /cart/order-confirmation?order-confirmed=true HTTP/2 and paste it to your jacket place order request and BOOM ! solved the lab.

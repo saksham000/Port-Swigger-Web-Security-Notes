@@ -1,0 +1,60 @@
+🧠 What Does It Mean?
+Many developers assume users will:
+
+Follow the normal flow of the application.
+
+Never try to break rules or tamper with anything.
+
+Stay trustworthy forever once verified.
+
+👉 These assumptions are wrong and can lead to logic flaws that attackers can exploit.
+
+🚨 Example 1: “Once a user is verified, they’ll stay honest”
+Let’s say your app verifies that a new user:
+
+Uploads valid documents
+
+Passes verification
+
+Then gets a “trusted” user status
+
+❌ Flawed Assumption:
+"Now that this user is verified, we don’t need to check them again."
+
+🧪 What an attacker can do:
+Once marked as “trusted”, the attacker:
+
+Changes their profile info
+
+Adds fake data
+
+Exploits the system using privileges they now have
+
+🔚 Impact: Loopholes are created where initial checks are bypassed in later stages.
+
+🔒 Security Checks Must Be Applied Consistently
+It’s a big mistake to check things only once at login or registration and never again.
+
+🧪 Example:
+You check that a user is not banned during login.
+
+But after login, you let them perform actions without checking if they’re banned again.
+
+The user gets banned, but can still use the system if the post-login logic doesn't re-check.
+
+🧪 Example 2: Order Edit After Payment
+A user orders a phone for ₹1000 and pays.
+
+Then they modify the order using Burp Suite to change it to a ₹10,000 phone — after payment.
+
+❌ Developer Assumption:
+"If payment is done, user won’t change the order."
+
+🔚 Result: User gets a more expensive product without paying extra.
+
+
+LAB PROCESS
+
+It is a simple lab just create new account.
+just update mail to test@dontwannacry.com.
+and BOOM ! Got Admin Panel Access.

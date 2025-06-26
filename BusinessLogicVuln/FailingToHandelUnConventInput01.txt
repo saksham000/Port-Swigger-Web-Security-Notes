@@ -1,0 +1,67 @@
+🧠 What’s the Main Idea?
+Apps should not just check whether input is the correct data type (like a number or text), but also whether the value makes sense for the business.
+
+If developers don’t think about weird or unexpected values, attackers can abuse this and break how the app works.
+
+🧪 Example 1: Negative Number in Fund Transfer
+Suppose a bank app has this code:
+
+php
+Copy
+Edit
+if ($transferAmount <= $currentBalance) {
+   // Do the transfer
+}
+The app checks if you have enough balance.
+
+But what if someone sends:
+
+ini
+Copy
+Edit
+amount = -1000
+👉 -1000 <= currentBalance will always be true!
+
+Instead of sending ₹1000 to another account, the logic might reverse the transfer, and take ₹1000 from the other person and give it to you. 😨
+
+🧪 Example 2: Negative Quantity in Online Shopping
+Let’s say the website allows you to add quantity of items:
+
+ini
+Copy
+Edit
+quantity = 2
+But the attacker changes it in Burp Suite to:
+
+ini
+Copy
+Edit
+quantity = -5
+Without proper server-side checks, the site might:
+
+Refund money instead of charging.
+
+Break the inventory system.
+
+Add items to cart for free.
+
+🧪 Example 3: Abnormally Large or Long Input
+Imagine a coupon code form:
+
+ini
+Copy
+Edit
+coupon = ABC123
+But the attacker enters:
+
+ini
+Copy
+Edit
+coupon = AAAAAAAAAAA... (10,000 characters)
+❗ If the app doesn’t limit the size:
+
+It could cause a crash.
+
+Or trigger unexpected behavior (like a bypass).
+
+Or even lead to Denial of Service (DoS).

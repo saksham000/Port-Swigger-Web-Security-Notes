@@ -1,0 +1,113 @@
+🔎 What Are These Examples About?
+Business logic vulnerabilities usually happen when developers make incorrect assumptions about how users behave or how their app is used.
+
+While the actual bugs may differ from app to app, many share the same root mistakes.
+
+Let’s now look at realistic types of mistakes and what kind of logic flaws they create 👇
+
+✅ 1. Trusting Client-Side Validation
+❌ Mistake:
+Assuming that checks done in the browser (JavaScript) will always protect the app.
+
+🧪 Exploit Example:
+A user tries to change their account balance. The webpage says “You can only deposit ₹1000 max,” but this limit is enforced only by JavaScript.
+
+A hacker disables JavaScript or uses Burp Suite to send a request with ₹10,000.
+
+🎯 Impact:
+Bypasses the limit and deposits a huge amount, possibly affecting calculations, bonuses, or rewards.
+
+✅ 2. Skipping Important Steps in a Workflow
+❌ Mistake:
+Assuming users will go through a fixed flow (e.g., add to cart → pay → confirm).
+
+🧪 Exploit Example:
+An attacker skips the "payment" step and directly accesses the "order confirmation" URL using intercepted requests.
+
+🎯 Impact:
+They get the product or service without paying.
+
+✅ 3. Insecure Use of Coupons or Discounts
+❌ Mistake:
+Assuming coupons can only be used once or are restricted properly.
+
+🧪 Exploit Example:
+User applies a ₹500 discount coupon and it works. But there is no backend check to prevent them from using it again.
+
+They repeat the request and keep applying the discount.
+
+🎯 Impact:
+Unlimited free products or massive loss to the business.
+
+✅ 4. Incomplete Authorization Checks
+❌ Mistake:
+Only checking if someone is logged in — not checking their role or identity.
+
+🧪 Exploit Example:
+An attacker changes a request like:
+
+sql
+Copy
+Edit
+GET /api/orders/view?userId=123
+to
+
+sql
+Copy
+Edit
+GET /api/orders/view?userId=999
+No check is done to confirm they own order 999.
+
+🎯 Impact:
+User accesses other people's data (privacy breach).
+
+✅ 5. Lack of Rate Limiting or Abuse Prevention
+❌ Mistake:
+Assuming users will use the app at normal speed (e.g., login attempts, purchase requests).
+
+🧪 Exploit Example:
+A user sends 1,000 purchase requests per second to grab all items during a flash sale.
+
+🎯 Impact:
+Other users miss out. Unfair advantage or DoS attack.
+
+✅ 6. Misusing Numeric or Boolean Logic
+❌ Mistake:
+Relying on insecure or simple flags to determine access or state.
+
+🧪 Exploit Example:
+User profile has:
+
+vbnet
+Copy
+Edit
+isAdmin: false
+in JSON request. Hacker changes it to:
+
+vbnet
+Copy
+Edit
+isAdmin: true
+And the server accepts it without checking.
+
+🎯 Impact:
+Regular user becomes admin.
+
+✅ 7. Failing to Handle Unusual Input or Edge Cases
+❌ Mistake:
+Not thinking about unexpected input, like negative numbers, zero, or huge values.
+
+🧪 Exploit Example:
+A return form accepts quantity = -1.
+
+Hacker submits:
+
+nginx
+Copy
+Edit
+Refund for -1 items = +₹100
+Instead of charging, the system gives money.
+
+🎯 Impact:
+Fraud, financial loss.
+

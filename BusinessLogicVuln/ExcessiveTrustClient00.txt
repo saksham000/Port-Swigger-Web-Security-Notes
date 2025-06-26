@@ -1,0 +1,54 @@
+🚨 What’s the Main Issue Here?
+Web developers often trust that users will behave nicely and only interact with the app using buttons, dropdowns, and forms as designed in the website.
+But attackers don’t have to follow those rules.
+
+⚠️ The Wrong Assumption:
+“If the browser stops the user from entering wrong or harmful data, the server doesn't need to check again.”
+
+👉 This is a bad assumption, because client-side controls (like JavaScript checks, form restrictions, dropdowns) can be easily bypassed using tools like Burp Suite.
+
+🛠️ How Attackers Exploit It
+When you click a button or submit a form, the browser sends a request to the server.
+Attackers can intercept that request using Burp Suite and change its content before it reaches the server.
+
+🧪 Example:
+Let’s say a form allows transferring money, but has a client-side check like:
+
+javascript
+Copy
+Edit
+if (amount > 1000) {
+   alert("You can’t send more than ₹1000!");
+   return false;
+}
+An attacker disables JavaScript or uses Burp Suite to change:
+
+ini
+Copy
+Edit
+amount=1000 → amount=1000000
+If the server doesn't validate this on its own, the transfer goes through!
+
+🔓 What Can Go Wrong Without Server-Side Validation?
+Free stuff by changing the price or quantity in a purchase request.
+
+Bypassing limits (e.g., discount % > 100).
+
+Submitting invalid data (e.g., bad email, fake IDs).
+
+Modifying roles or account details by tampering with hidden fields (e.g., isAdmin=true).
+
+✅ Best Practices to Avoid This
+Never trust data from the browser.
+
+Always validate everything on the server side.
+
+Don’t rely on hidden form fields, dropdown restrictions, or JavaScript alone.
+
+Use input validation, sanitization, and authorization checks on the backend.
+
+
+
+LAB PROCESS
+
+In this lab when you add item to cart just intercept that request and change its price to 1$ and BOOM ! solved the lab.

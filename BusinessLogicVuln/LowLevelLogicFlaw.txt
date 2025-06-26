@@ -1,0 +1,5 @@
+This lab is trickey.
+first add 99 items and check the max product add limit.
+use intruder and keep on adding until total amount goes to -ve value.
+after that add quantity to make it manageable amount.
+after that add any other item to cart to make it under 100$ and BOOM ! solved the lab.

@@ -1,0 +1,11 @@
+
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA@dontwannacry.com.exploit-0ae2006904abfc91b3da1fcf01d8006d.exploit-server.net
+
+LAB PROCESS
+
+Very trickey lab
+
+in this lab the server only checks 255 characters in gmail after that it removes the rest of it.
+so add the 255 characters like shown in upar string.
+and the server will take firt 255 characters will DontWannaCry.com and drop the rest of the string.
+and admin domain should be registered with DontWannaCry domail and BOOM ! solved the lab.

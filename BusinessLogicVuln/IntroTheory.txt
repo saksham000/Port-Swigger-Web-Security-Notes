@@ -1,0 +1,57 @@
+🔍 What are Business Logic Vulnerabilities?
+Definition:
+These are bugs or weaknesses in how an app is designed to work. They allow hackers to misuse features in ways developers didn’t expect.
+
+Example:
+Imagine an e-commerce website where you buy items by adding them to a cart and clicking "Pay ₹500".
+But what if a hacker removes the payment step and goes straight to "Order Confirmed"? If the server doesn’t properly check whether payment was made, the hacker gets the product for free. That’s a logic flaw.
+
+💡 Why Do These Happen?
+They happen because:
+
+Developers assume users will behave normally (e.g., only using buttons on the site).
+
+They forget users can tamper with requests using tools like Burp Suite.
+
+Different parts of the app are built by different people who may not understand the whole system.
+
+Example:
+A site might use JavaScript to check if you filled out all the fields in a form, but forget to do the same check on the server. A hacker can just skip those checks.
+
+🎯 What Can Attackers Do With Them?
+Depends on where the bug is. For example:
+
+Skip payments and get items for free.
+
+Bypass login and get admin access.
+
+Modify their account balance.
+
+Place illogical orders (like negative quantity or ₹0 price).
+
+Even if the flaw doesn’t give the hacker something directly, it can still hurt the business.
+
+🛠️ Examples of Business Logic Flaws
+Ordering free stuff by changing the price to ₹0 in the request.
+
+Reusing a coupon multiple times when it was meant for one-time use.
+
+Bypassing limits, like changing the quantity from 1 to 1000 for a flash sale item.
+
+Skipping steps, like confirming an order without paying.
+
+🔐 Why Are These Bugs Dangerous?
+They are hard to find automatically. Tools like scanners may miss them.
+
+You need human thinking to understand how a real attacker could abuse features.
+
+That’s why these are a hot target for bug bounty hunters.
+
+✅ How to Prevent Them
+Don’t trust the frontend (browser). Always validate things on the server-side.
+
+Think like a hacker: “What happens if someone skips or changes this step?”
+
+Test how parts of the app can be misused together.
+
+Keep documentation and assumptions clear between dev teams.

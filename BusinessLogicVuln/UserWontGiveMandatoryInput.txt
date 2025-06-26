@@ -1,0 +1,20 @@
+✅ What Should Pentesters Do?
+While testing for this vulnerability:
+
+Remove parameters one at a time using Burp Suite (from URL, POST, headers, cookies).
+
+Remove the value only (e.g. amount=), then
+
+Remove the whole parameter (e.g. delete amount= completely).
+
+Observe how the app behaves:
+
+Does it throw an error?
+
+Does it default to a weird value?
+
+Does it skip something important?
+
+LAB PROCESS
+
+It is a simple and easy lab in this lab login to your account and change your password and in request change username to admin and remove current pass field and BOON ! solved the lab.

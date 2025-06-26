@@ -1,0 +1,2 @@
+In this lab add that jacket to cart.
+and then add any item to cart and add its quantity to a negative value add that negative value until tha price comes the lower that the avalaible balance and BOOM ! solved the lab.
