@@ -1,0 +1,16 @@
+This is a hard lab we have to use macro in this lab.
+In this lab first subscribe to newsletter and copy the coupon.
+now use that coupon and buy a gift of 10$ in 7$.
+now go to macro to repeat this steps do this
+
+Add these requests in this order
+POST /cart
+POST /cart/coupon
+POST /cart/checkout
+GET /cart/order-confirmation
+POST /gift-card
+
+now in card order confirm add a veribale name as gift-card and select the code in response.
+now in 5th request do config and use derived option from response 4.
+now test the macro if everything is ok then
+send the my-account request to intruder and in resource set thread to 1 and strat a null payload attack and BOOM ! now wait for $ to increase to 1400$ and buy the jacket and solved the lab.

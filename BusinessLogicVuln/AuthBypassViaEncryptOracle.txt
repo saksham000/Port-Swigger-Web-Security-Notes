@@ -1,0 +1,27 @@
+It is a hard lab.
+
+In this lab first write a comment on a post then enter a invalid email id and comment then see it shows invalid id error.
+Now sent these two request to repeater
+POST /post/comment (use for encrypt)
+GET /post/postId=4 (use to decrypt)
+
+The logic benhind this is use email field to convert simple text to cypher text then copy the stay login cookie and past it in notification cookie and it will change it to normal text in response.
+
+Now we can see the wiener:sometext as decrypted value in the response
+now use this format to encrypt administrator:1751055935874
+it will give this
+Invalid email address: administrator:1751055935874
+
+to remove Invalid email address:  add 9 x in front like this
+
+xxxxxxxxxadministrator:1751055935874  
+url>base64>remove 32 byte by selecting 32 byte and delete selected bytes.
+
+now send it and remove 32 byte from hex value.
+
+now encode that again and send it in decrypting request.
+you will get this
+administrator:1751055935874   
+
+And this is that result cokkie use it as stay-login cookie and remove session cookie and BOOM ! solved the lab.
+%42%37%4e%67%61%7a%67%71%6b%62%32%49%2f%47%42%7a%61%57%4c%38%56%32%43%2f%57%63%49%2f%73%2b%6a%51%46%71%4c%7a%39%72%43%61%30%61%38%3d

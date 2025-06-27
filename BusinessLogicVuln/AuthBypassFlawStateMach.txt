@@ -1,0 +1,5 @@
+In this lab there is a litte trick.
+turn on interseption in burp and login.
+now forward that post login req.
+now another request will come for role selector.
+now drop that request and BOOM ! now you can access admin panel. Solved the Lab !
