@@ -1,0 +1,75 @@
+🔐 How to Prevent Information Disclosure Vulnerabilities
+Information disclosure can happen in many ways, so you can't block every possible leak with just one fix. But here are best practices you should always follow:
+
+✅ 1. Know What Is Sensitive
+Make sure your whole team understands what counts as sensitive:
+
+📧 Emails, phone numbers, usernames
+
+🔑 API keys, tokens, session IDs
+
+🧠 Internal logic, server file paths
+
+🛠️ Framework versions, database errors
+
+🧠 Example: A simple message like
+"User admin123 not found"
+seems harmless — but helps attackers enumerate users.
+
+✅ 2. Audit Code for Leaks
+As part of your code reviews or CI/CD pipelines, check for:
+
+👨‍💻 Developer comments like <!-- admin panel here -->
+
+🔑 Hardcoded credentials in files
+
+🗂 Leftover backup files or test scripts
+
+✅ You can use automated tools to scan and remove these.
+
+✅ 3. Use Generic Error Messages
+Don’t give away internal logic in errors.
+
+❌ Bad:
+
+javascript
+Copy
+Edit
+Error: SQL syntax near 'DROP TABLE users;'
+✅ Good:
+
+cpp
+Copy
+Edit
+Oops! Something went wrong. Please try again.
+Why? Because detailed errors help attackers craft payloads.
+
+✅ 4. Disable Debugging in Production
+Debug tools can expose:
+
+📂 File paths
+
+🔑 Secrets
+
+🧪 App internals
+
+Double-check that things like:
+
+DEBUG=true
+
+Verbose logging
+
+/debug endpoints
+
+…are turned off when your app is live.
+
+✅ 5. Secure Third-Party Tools Properly
+Frameworks, CMSs, libraries (like Laravel, Django, WordPress) often come with:
+
+Default credentials
+
+Debugging modes
+
+Verbose error handlers
+
+🔍 Learn how to configure them securely. Disable what you don’t use.

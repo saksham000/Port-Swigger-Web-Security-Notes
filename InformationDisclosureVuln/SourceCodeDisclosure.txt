@@ -1,0 +1,88 @@
+🧑‍💻 What is Source Code Disclosure?
+It’s when an attacker can see the actual code behind a website — the logic, secrets, and how it works internally.
+
+This is a big risk because the attacker can:
+
+Understand the app’s logic
+
+Find hidden vulnerabilities
+
+Discover hard-coded passwords, API keys, or database credentials
+
+⚠️ Why is This Dangerous?
+With source code access, an attacker can find bugs easily.
+
+Many developers accidentally leave secrets in the code, like:
+
+java
+Copy
+Edit
+String dbPassword = "admin123";
+If the attacker knows what framework or language you’re using (like PHP, Laravel, Django), they can look up public exploits.
+
+🧪 Example: Backup File Leak
+Let’s say the website has a file:
+
+arduino
+Copy
+Edit
+https://example.com/login.php
+When you open it, the server executes the file and shows the login form — it doesn’t show you the code.
+
+But developers often use text editors that automatically create backups like:
+
+pgsql
+Copy
+Edit
+login.php~
+login.bak
+login.old
+login.txt
+If these backup files are on the server and not properly removed, you can try:
+
+arduino
+Copy
+Edit
+https://example.com/login.php~
+✅ And instead of running the PHP file, it may return the plain source code, like:
+
+php
+Copy
+Edit
+<?php
+$username = $_POST['user'];
+$password = $_POST['pass'];
+$dbpass = 'admin123'; // hard-coded!
+?>
+Now the attacker knows how the login works and the database password.
+
+🧪 Real-World Example:
+During reconnaissance, an attacker finds:
+
+Copy
+Edit
+robots.txt
+Inside it:
+
+pgsql
+Copy
+Edit
+Disallow: /admin/login.php
+Then tries:
+
+pgsql
+Copy
+Edit
+/admin/login.php~ → Success: Source code leaked
+✅ How to Prevent This
+❌ Never leave backup files on the server
+
+🧹 Clean up editor backups like .php~, .bak, .old, etc.
+
+🔒 Use proper server configurations to block or ignore such files
+
+🔍 Regularly scan your site with tools like Burp to detect exposed source files
+
+LAB PROCESS
+
+It is a very esay lab in this lab just use burp to scan the content of the website and go to /backup to find the source code.

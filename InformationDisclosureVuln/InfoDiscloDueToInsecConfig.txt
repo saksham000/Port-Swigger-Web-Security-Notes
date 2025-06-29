@@ -1,0 +1,42 @@
+⚙️ What is Insecure Configuration?
+Websites often use third-party tools (like web servers, databases, frameworks). These tools have lots of settings, and if they aren’t set up properly, they can leak sensitive information.
+
+This is called information disclosure due to insecure configuration.
+
+🧠 Why Does It Happen?
+Developers may not understand every setting of the tool they're using.
+
+They might forget to turn off debug features when moving the site from development to production.
+
+Servers might allow unnecessary HTTP methods that can leak data.
+
+🔁 Example: HTTP TRACE Method
+The TRACE method is used to help developers debug requests.
+If it’s left enabled in production, you can send a TRACE request like:
+
+makefile
+Copy
+Edit
+TRACE / HTTP/1.1  
+Host: example.com  
+X-Custom-Header: secretvalue
+And the server might respond with:
+
+python-repl
+Copy
+Edit
+HTTP/1.1 200 OK  
+...  
+X-Custom-Header: secretvalue
+😲 Why is this bad?
+It echoes back all the headers.
+
+If reverse proxies or firewalls add sensitive headers (like auth tokens), this leaks them.
+
+Attackers can use it for Cross Site Tracing (XST) attacks.
+
+
+
+LAB PROCESS
+
+It is easy lab in this lab try to access /admin it tells only local users can access the admin panel. now go to its request and add TRCAE before HTTP in top of request in reponse it will give custom header X-Custom-IP-Authorization: now add localhost ip here and BOOM ! Got the Admin Panel and Solved The Lab.

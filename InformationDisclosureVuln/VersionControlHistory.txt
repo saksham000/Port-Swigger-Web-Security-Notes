@@ -1,0 +1,1 @@
+It is a Trickey lab in this firt go to /.git page and wget -r "website link here" to download the website and then open that folder using git-cola and on top there is a option to undo last commits do that and you can see the last commit of .config file which will tell the admin pass and BOOM ! Solved The Lab.

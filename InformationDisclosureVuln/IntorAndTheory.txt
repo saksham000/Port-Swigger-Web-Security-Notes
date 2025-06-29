@@ -1,0 +1,60 @@
+🔍 What is Information Disclosure?
+Information Disclosure (or Information Leakage) happens when a website accidentally shares sensitive data with users or attackers.
+
+This can include:
+
+👤 Other users' info (like usernames or bank details)
+
+🏢 Company secrets (like product plans or pricing strategies)
+
+🧱 Technical details (like server info, database names, etc.)
+
+Even if it's just technical info, attackers can use that to plan bigger attacks later.
+
+💥 Why Is It Dangerous?
+If a website shows an error message with database names, an attacker may use that to launch SQL Injection.
+
+If you accidentally publish a backup file (like index.php.bak), attackers may download the entire source code.
+
+If your site shows different messages when logging in with a wrong username vs. a wrong password, an attacker can guess which usernames are real.
+
+🧪 Examples of Information Disclosure:
+Example	What attacker learns
+robots.txt shows hidden folders	Where sensitive files are stored
+Error message: Unknown column 'credit_card'	Database has a credit_card column
+Exposed .git folder	Entire website code history
+Comment in HTML: <!-- TODO: disable admin login -->	Developer forgot to remove something important
+
+🧠 How These Issues Happen
+Forgetting to remove development data
+Example: Leaving <!-- secret API key here --> in HTML.
+
+Bad configuration
+Example: Debug mode shows full error trace including server files.
+
+Application design flaws
+Example: Login form says "user not found" or "wrong password" — this helps attackers guess usernames.
+
+📉 Impact of These Vulnerabilities
+Direct impact: If credit card info leaks, it’s very serious.
+
+Indirect impact: Knowing a site uses PHP 5.6 (outdated) could let attackers find a public exploit.
+
+So, how bad it is depends on what an attacker can do with the leaked info.
+
+🧪 How to Test and Rate the Risk
+Don’t panic over every small detail. If you find technical info like the framework used (e.g., Laravel), ask:
+❓“Is it an old version with known bugs?”
+
+If you can’t abuse the info, it may not be critical.
+
+If you can use it to attack, it becomes high severity.
+
+✅ How to Prevent Information Disclosure
+❌ Don’t show full error messages to users
+
+🔐 Don’t hardcode secrets (API keys, DB passwords)
+
+🚫 Disable debug/verbose logging in production
+
+🧹 Remove development files, backups, and hidden folders
