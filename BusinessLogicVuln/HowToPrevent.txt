@@ -1,0 +1,54 @@
+🛡️ How to Prevent Business Logic Vulnerabilities
+Business logic flaws are mistakes in how the app is supposed to work, not just bugs in code.
+So, to prevent them, you need to focus on both understanding the app and writing logic carefully.
+
+✅ 1. Understand the Business Domain
+💡 If you don’t understand what the app is supposed to do, you can’t secure it.
+
+Know what normal user behavior looks like.
+
+Understand what should and should not be allowed.
+
+Developers and testers must be familiar with the business rules (like: "Discounts only apply on final cart total", "Only managers can approve refunds", etc.).
+
+📌 Example: In an e-commerce app, testers must know that discounts should recalculate when items are removed from the cart — not just apply once.
+
+✅ 2. Don’t Assume Users Behave Normally
+❌ Don’t assume users won’t tamper with things.
+
+Users might skip steps, change data, or replay requests.
+
+Use tools like Burp Suite to test abnormal behaviors (remove fields, change values, repeat actions).
+
+📌 Example: A user might skip payment but still place an order by manually crafting the request.
+
+✅ 3. Validate Everything on the Server
+Never trust user input, even if the browser seems to enforce rules.
+
+Validate:
+
+Input types and value ranges
+
+Business logic rules (e.g. stock availability, user permissions)
+
+📌 Example: Don’t just check “amount > 0” — also check that “user owns this account” before processing a transfer.
+
+✅ 4. Maintain Clear Documentation
+Keep records of:
+
+Assumptions (e.g. “Discount must apply only once”)
+
+Data flow (how data moves between components)
+
+Dependencies (if one component affects another)
+
+📌 Example: If a cart module depends on the inventory module, document how they interact — attackers might exploit weak links.
+
+✅ 5. Write Clear, Understandable Code
+🧠 If code is messy or confusing, logic flaws will be missed.
+
+Use meaningful variable names
+
+Keep logic separated into functions
+
+Use comments only when logic is non-obvious
